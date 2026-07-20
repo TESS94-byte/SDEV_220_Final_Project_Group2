@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The Cleaning Crew Services</title>
+</head>
+
+<body>
+
+<h1>Our Cleaning Services</h1>
+
+{% for service in services %}
+
+<h2>
+    <a href="/services/{{ service.id }}/">
+        {{ service.name }}
+    </a>
+</h2>
+<p>{{ service.description }}</p>
+<p>Price: ${{ service.price }}</p>
+
+<hr>
+
+{% endfor %}
+
+</body>
+</html>
