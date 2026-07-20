@@ -1,26 +1,58 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>The Cleaning Crew Services</title>
+    <title>Our Services - The Cleaning Crew</title>
+    <link rel="stylesheet" href="{% static 'services/style.css' %}">
 </head>
 
 <body>
 
-<h1>Our Cleaning Services</h1>
+<nav>
+    <a href="/">Home</a>
+    <a href="/services/">Services</a>
+    <a href="/admin/">Admin</a>
+</nav>
 
-{% for service in services %}
 
-<h2>
-    <a href="/services/{{ service.id }}/">
-        {{ service.name }}
-    </a>
-</h2>
-<p>{{ service.description }}</p>
-<p>Price: ${{ service.price }}</p>
+<header>
+    <h1>Our Cleaning Services</h1>
+    <p>Choose the service that fits your needs</p>
+</header>
 
-<hr>
 
-{% endfor %}
+<div class="container">
+
+    {% for service in services %}
+
+    <div class="card">
+
+        <h2>
+            <a href="/services/{{ service.id }}/">
+                {{ service.name }}
+            </a>
+        </h2>
+
+        <p>{{ service.description }}</p>
+
+        <p>
+            Price: ${{ service.price }}
+        </p>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+
+<footer>
+    <p>© 2026 The Cleaning Crew</p>
+</footer>
+
 
 </body>
+
 </html>
