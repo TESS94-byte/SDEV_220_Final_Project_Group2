@@ -11,9 +11,45 @@
 <body>
 
 <nav>
+
+    <a href="/">
+        <img class="logo"
+             src="{% static 'services/images/logo.png' %}"
+             alt="The Cleaning Crew Logo">
+    </a>
+
+
     <a href="/">Home</a>
     <a href="/services/">Services</a>
-    <a href="/admin/">Admin</a>
+
+    <a href="/book/">Book Appointment</a>
+
+
+    {% if user.is_authenticated %}
+
+        <a href="/appointments/">Appointments</a>
+
+        <a href="/admin/">Admin</a>
+
+
+        <form method="POST" action="/logout/" style="display:inline;">
+
+            {% csrf_token %}
+
+            <button class="button" type="submit">
+                Logout
+            </button>
+
+        </form>
+
+
+    {% else %}
+
+        <a href="/login/">Business Login</a>
+
+    {% endif %}
+
+
 </nav>
 
 
@@ -27,23 +63,55 @@
 
     {% for service in services %}
 
+<div class="card">
+
+    <h2>
+        {{ service.name }}
+    </h2>
+
+
+    <p>
+        {{ service.description }}
+    </p>
+
+
+    <p>
+        <strong>Price:</strong> ${{ service.price }}
+    </p>
+
+
+    <br>
+
+
+    <a class="button" href="/services/{{ service.id }}/">
+        View Details
+    </a>
+
+
+    <a class="button" href="/book/?service={{ service.id }}">
+        Book This Service
+    </a>
+
+
+</div>
+
+{% endfor %}
+
+
     <div class="card">
 
-        <h2>
-            <a href="/services/{{ service.id }}/">
-                {{ service.name }}
-            </a>
-        </h2>
-
-        <p>{{ service.description }}</p>
+        <h2>Ready to book?</h2>
 
         <p>
-            Price: ${{ service.price }}
+            Schedule your cleaning appointment today.
         </p>
+
+        <a class="button" href="/book/">
+            Book Appointment
+        </a>
 
     </div>
 
-    {% endfor %}
 
 </div>
 

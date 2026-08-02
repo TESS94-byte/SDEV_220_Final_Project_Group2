@@ -1,0 +1,75 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login - The Cleaning Crew</title>
+    <link rel="stylesheet" href="{% static 'services/style.css' %}">
+</head>
+
+
+<body>
+
+
+<nav>
+
+    <a href="/">
+        <img class="logo"
+             src="{% static 'services/images/logo.png' %}"
+             alt="The Cleaning Crew Logo">
+    </a>
+
+
+    <a href="/">Home</a>
+
+    <a href="/services/">Services</a>
+
+    <a href="/book/">Book Appointment</a>
+
+    <a href="/login/">Business Login</a>
+
+</nav>
+
+
+
+<header>
+    <h1>Login</h1>
+    <p>Business owner access</p>
+</header>
+
+
+
+<div class="container">
+
+    <div class="card">
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+
+            <button class="button" type="submit">
+                Login
+            </button>
+
+
+        </form>
+
+
+    </div>
+
+</div>
+
+
+<footer>
+    <p>© 2026 The Cleaning Crew</p>
+</footer>
+
+
+</body>
+
+</html>

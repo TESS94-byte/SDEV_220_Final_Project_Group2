@@ -1,0 +1,94 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Book Appointment - The Cleaning Crew</title>
+    <link rel="stylesheet" href="{% static 'services/style.css' %}">
+</head>
+
+
+<body>
+
+
+<nav>
+
+    <a href="/">
+        <img class="logo"
+             src="{% static 'services/images/logo.png' %}"
+             alt="The Cleaning Crew Logo">
+    </a>
+
+
+    <a href="/">Home</a>
+
+    <a href="/services/">Services</a>
+
+    <a href="/book/">Book Appointment</a>
+
+    <a href="/login/">Business Login</a>
+
+</nav>
+
+
+
+<header>
+
+    <h1>Book Your Cleaning Service</h1>
+
+    <p>Schedule a professional cleaning appointment</p>
+
+</header>
+
+
+
+<div class="container">
+
+    <div class="card">
+
+
+        <h2>Customer Information</h2>
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            {{ customer_form.as_p }}
+
+
+            <h2>Appointment Details</h2>
+
+
+            {{ appointment_form.as_p }}
+
+
+            <br>
+
+
+            <button class="button" type="submit">
+                Submit Appointment
+            </button>
+
+
+        </form>
+
+
+    </div>
+
+</div>
+
+
+
+<footer>
+
+    <p>© 2026 The Cleaning Crew</p>
+
+</footer>
+
+
+</body>
+
+</html>

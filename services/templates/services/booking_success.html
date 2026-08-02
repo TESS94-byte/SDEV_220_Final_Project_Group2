@@ -1,0 +1,119 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Booking Successful - The Cleaning Crew</title>
+    <link rel="stylesheet" href="{% static 'services/style.css' %}">
+</head>
+
+
+<body>
+
+<nav>
+
+    <a href="/">
+        <img class="logo"
+             src="{% static 'services/images/logo.png' %}"
+             alt="The Cleaning Crew Logo">
+    </a>
+
+
+    <a href="/">Home</a>
+    <a href="/services/">Services</a>
+
+    <a href="/book/">Book Appointment</a>
+
+    <a href="/login/">Business Login</a>
+
+</nav>
+
+
+<header>
+
+    <h1>Booking Successful!</h1>
+
+    <p>Thank you for choosing The Cleaning Crew</p>
+
+</header>
+
+
+
+<div class="container">
+
+    <div class="card">
+
+
+        <h2>
+            Thank you {{ customer.first_name }} {{ customer.last_name }}!
+        </h2>
+
+
+        <p>
+            Your appointment request has been submitted successfully.
+        </p>
+
+
+        <hr>
+
+
+        <h3>Appointment Details</h3>
+
+
+        <p>
+            <strong>Service:</strong>
+            {{ appointment.service }}
+        </p>
+
+
+        <p>
+            <strong>Date:</strong>
+            {{ appointment.appointment_date }}
+        </p>
+
+
+        <p>
+            <strong>Time:</strong>
+            {{ appointment.appointment_time }}
+        </p>
+
+
+        <p>
+            <strong>Status:</strong>
+            {{ appointment.status }}
+        </p>
+
+
+        <br>
+
+
+        <p>
+            We will contact you soon to confirm your appointment.
+        </p>
+
+
+        <br>
+
+
+        <a class="button" href="/services/">
+            View More Services
+        </a>
+
+
+    </div>
+
+</div>
+
+
+
+<footer>
+
+    <p>© 2026 The Cleaning Crew</p>
+
+</footer>
+
+
+</body>
+
+</html>

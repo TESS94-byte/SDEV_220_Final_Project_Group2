@@ -12,9 +12,46 @@
 <body>
 
 <nav>
+
+    <a href="/">
+        <img class="logo"
+             src="{% static 'services/images/logo.png' %}"
+             alt="The Cleaning Crew Logo">
+    </a>
+
+
     <a href="/">Home</a>
+
     <a href="/services/">Services</a>
-    <a href="/admin/">Admin</a>
+
+    <a href="/book/">Book Appointment</a>
+
+
+    {% if user.is_authenticated %}
+
+        <a href="/appointments/">Appointments</a>
+
+        <a href="/admin/">Admin</a>
+
+
+        <form method="POST" action="/logout/" style="display:inline;">
+
+            {% csrf_token %}
+
+            <button class="button" type="submit">
+                Logout
+            </button>
+
+        </form>
+
+
+    {% else %}
+
+        <a href="/login/">Business Login</a>
+
+    {% endif %}
+
+
 </nav>
 
 
@@ -40,6 +77,10 @@
 
 
         <br>
+
+        <a class="button" href="/book/?service={{ service.id }}">
+            Book This Service
+        </a>
 
         <a class="button" href="/services/">
             Back to Services

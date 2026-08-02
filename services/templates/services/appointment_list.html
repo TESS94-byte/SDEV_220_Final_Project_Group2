@@ -1,0 +1,168 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Appointments Dashboard - The Cleaning Crew</title>
+    <link rel="stylesheet" href="{% static 'services/style.css' %}">
+</head>
+
+<body>
+
+<nav>
+
+    <a href="/">
+        <img class="logo"
+             src="{% static 'services/images/logo.png' %}"
+             alt="The Cleaning Crew Logo">
+    </a>
+
+
+    <a href="/">Home</a>
+    <a href="/services/">Services</a>
+
+    <a href="/book/">Book Appointment</a>
+
+    {% if user.is_authenticated %}
+
+        <a href="/appointments/">Appointments</a>
+
+        <a href="/admin/">Admin</a>
+
+        <form method="POST" action="/logout/" style="display:inline;">
+            {% csrf_token %}
+            <button class="button" type="submit">
+                Logout
+            </button>
+        </form>
+
+    {% else %}
+
+        <a href="/login/">Business Login</a>
+
+    {% endif %}
+
+</nav>
+
+<header>
+    <h1>Appointments Dashboard</h1>
+    <p>Manage customer cleaning appointments</p>
+</header>
+
+<div class="container">
+    <div class="dashboard-cards">
+
+    <div class="dashboard-card">
+        <h3>Total Appointments</h3>
+        <p>{{ total_appointments }}</p>
+    </div>
+
+
+    <div class="dashboard-card">
+        <h3>Pending</h3>
+        <p>{{ pending_count }}</p>
+    </div>
+
+
+    <div class="dashboard-card">
+        <h3>Confirmed</h3>
+        <p>{{ confirmed_count }}</p>
+    </div>
+
+
+    <div class="dashboard-card">
+        <h3>Completed</h3>
+        <p>{{ completed_count }}</p>
+    </div>
+
+</div>
+    <div class="card">
+
+        <h2>All Appointments</h2>
+
+        <form method="GET">
+
+            <label>Filter by Status:</label>
+
+            <select name="status">
+
+                <option value="">All</option>
+                <option value="Pending">Pending</option>
+                <option value="Confirmed">Confirmed</option>
+                <option value="Completed">Completed</option>
+                <option value="Cancelled">Cancelled</option>
+
+            </select>
+
+            <button class="button" type="submit">
+                Filter
+            </button>
+
+        </form>
+
+        <br>
+
+        <table>
+
+            <tr>
+                <th>Customer</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Service</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+
+            {% for appointment in appointments %}
+
+            <tr>
+
+                <td>{{ appointment.customer.first_name }} {{ appointment.customer.last_name }}</td>
+
+                <td>{{ appointment.customer.email }}</td>
+
+                <td>{{ appointment.customer.phone }}</td>
+
+                <td>{{ appointment.service }}</td>
+
+                <td>{{ appointment.appointment_date }}</td>
+
+                <td>{{ appointment.appointment_time }}</td>
+
+                <td>{{ appointment.status }}</td>
+
+                <td>
+                    <a class="small-button"
+                       href="/appointments/{{ appointment.id }}/update/">
+                        Change Status
+                    </a>
+                </td>
+
+            </tr>
+
+            {% empty %}
+
+            <tr>
+                <td colspan="8">
+                    No appointments found.
+                </td>
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2026 The Cleaning Crew</p>
+</footer>
+
+</body>
+
+</html>

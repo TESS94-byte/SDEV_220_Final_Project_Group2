@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html>
 
@@ -10,58 +11,200 @@
 
 <body>
 
+
 <nav>
+
+    <a href="/">
+        <img class="logo"
+             src="{% static 'services/images/logo.png' %}"
+             alt="The Cleaning Crew Logo">
+    </a>
+
+
     <a href="/">Home</a>
     <a href="/services/">Services</a>
-    <a href="/admin/">Admin</a>
+
+    <a href="/book/">Book Appointment</a>
+
+
+    {% if user.is_authenticated %}
+
+        <a href="/appointments/">Appointments</a>
+
+        <a href="/admin/">Admin</a>
+
+        <form method="POST" action="/logout/" style="display:inline;">
+            {% csrf_token %}
+
+            <button class="button" type="submit">
+                Logout
+            </button>
+
+        </form>
+
+
+    {% else %}
+
+        <a href="/login/">Business Login</a>
+
+    {% endif %}
+
+
 </nav>
 
 
+
 <header>
+
+    <img src="{% static 'services/images/cleaning-home.jpg' %}"
+         alt="Professional cleaning service"
+         width="400">
+
+
     <h1>The Cleaning Crew</h1>
-    <p>Professional cleaning services for homes, offices, and Airbnb properties.</p>
+
+
+    <p>
+        Professional cleaning services for homes,
+        offices, and Airbnb properties.
+    </p>
+
+
+    <br>
+
+
+    <a class="button" href="/book/">
+        Book Your Cleaning Today
+    </a>
+
+
 </header>
+
+
 
 
 <div class="container">
 
+
+
     <div class="card">
-        <h2>Welcome!</h2>
+
+        <h2>Reliable Cleaning Services</h2>
+
 
         <p>
-            We provide reliable and affordable cleaning solutions
-            designed to make your space clean and comfortable.
+            We provide affordable and dependable cleaning
+            solutions designed to make your space clean,
+            comfortable, and stress-free.
         </p>
 
-        <a class="button" href="/services/">
-            View Our Services
-        </a>
     </div>
+
+
 
 
     <div class="card">
 
         <h2>Our Services</h2>
 
+
+
+        <img src="{% static 'services/images/airbnb-cleaning.webp' %}"
+             alt="Airbnb cleaning service"
+             width="250">
+
+
+        <h3>
+            Airbnb Turnover Cleaning
+        </h3>
+
+
+        <p>
+            Fast and reliable cleaning service
+            to prepare Airbnb properties for new guests.
+        </p>
+
+
+
+        <img src="{% static 'services/images/office-cleaning.webp' %}"
+             alt="Office cleaning service"
+             width="250">
+
+
+        <h3>
+            Office Cleaning
+        </h3>
+
+
+        <p>
+            Professional cleaning solutions
+            for offices and workplaces.
+        </p>
+
+
+
         <p>
             ✓ Home Cleaning
             <br>
-            ✓ Airbnb Turnover Cleaning
-            <br>
-            ✓ Office Cleaning
-            <br>
             ✓ Deep Cleaning
+            <br>
+            ✓ Move-Out Cleaning
         </p>
 
+
+        <br>
+
+
+        <a class="button" href="/services/">
+            View All Services
+        </a>
+
+
     </div>
+
+
+
+
+
+    <div class="card">
+
+        <h2>Why Choose Us?</h2>
+
+
+
+        <img src="{% static 'services/images/team.png' %}"
+             alt="The Cleaning Crew team"
+             width="300">
+
+
+        <p>
+            ✓ Professional service
+            <br>
+            ✓ Flexible scheduling
+            <br>
+            ✓ Affordable prices
+            <br>
+            ✓ Customer-focused cleaning
+        </p>
+
+
+    </div>
+
 
 
 </div>
 
 
+
+
 <footer>
-    <p>© 2026 The Cleaning Crew</p>
+
+    <p>
+        © 2026 The Cleaning Crew
+    </p>
+
 </footer>
+
 
 
 </body>
